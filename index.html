@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FF AUTODONATE TJ</title>
+<style>
+body{margin:0;background:#10111a;color:white;font-family:Arial;text-align:center;padding:18px}
+h1{color:#ffc247}
+p{color:#ccc}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#252538;padding:20px 8px;border:2px solid #41415b;border-radius:14px;cursor:pointer}
+.card.selected{border-color:#ffc247}
+.diamonds{font-size:21px;color:#ffc247;font-weight:bold}
+.price{font-size:18px;margin-top:12px}
+input{box-sizing:border-box;padding:14px;width:100%;margin:20px 0;background:#202132;color:white;border:1px solid #555;border-radius:8px}
+button{padding:15px;width:100%;margin-top:18px;background:#ffc247;border:0;border-radius:9px;font-weight:bold;font-size:16px}
+#msg{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<h1>💎 FF AUTODONATE TJ</h1>
+<p>🇹🇯 Магазин алмазов Free Fire</p>
+<p>Выбери пакет</p>
+<div class="grid">
+<div class="card selected" data-name="100 алмазов">
+<div class="diamonds">💎 100</div>
+<p>Алмазов</p><div class="price">10 сомони</div>
+</div>
+<div class="card" data-name="310 алмазов">
+<div class="diamonds">💎 310</div>
+<p>Алмазов</p><div class="price">25 сомони</div>
+</div>
+<div class="card" data-name="520 алмазов">
+<div class="diamonds">💎 520</div>
+<p>Алмазов</p><div class="price">40 сомони</div>
+</div>
+<div class="card" data-name="1060 алмазов">
+<div class="diamonds">💎 1060</div>
+<p>Алмазов</p><div class="price">80 сомони</div>
+</div>
+</div>
+<input id="uid" inputmode="numeric" placeholder="Введи UID Free Fire">
+<button id="order">Продолжить</button>
+<p id="msg"></p>
+<script>
+let chosen="100 алмазов";
+document.querySelectorAll(".card").forEach(card=>{
+card.onclick=()=>{
+document.querySelectorAll(".card").forEach(c=>c.classList.remove("selected"));
+card.classList.add("selected");
+chosen=card.dataset.name;
+};
+});
+document.getElementById("order").onclick=()=>{
+let uid=document.getElementById("uid").value.trim();
+if(!/^\d{5,20}$/.test(uid)){
+document.getElementById("msg").textContent="Введи правильный UID.";
+return;
+}
+document.getElementById("msg").textContent=
+"Выбрано: "+chosen+". UID: "+uid+". Оплата и выдача пока не подключены.";
+};
+</script>
+</body>
+</html>
